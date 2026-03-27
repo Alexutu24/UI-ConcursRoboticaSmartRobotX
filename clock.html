@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<title>Clock Overlay - Tema Alba</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --panel:    rgba(255, 255, 255, 0.95); 
+  --border:   rgba(0, 0, 0, 0.15); 
+  --gold:     #c9a84c;
+  --text-main:#111111; 
+  --text-dim: rgba(0, 0, 0, 0.6); 
+}
+
+/* Transparență absolută pentru OBS */
+html, body {
+  width: 1920px; 
+  height: 1080px;
+  margin: 0; 
+  padding: 0;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0) !important; 
+  font-family: 'Inter', sans-serif;
+}
+
+/* Containerul ceasului */
+#clock-widget {
+  position: absolute;
+  top: 36px;   /* Distanța de sus */
+  right: 36px; /* Distanța din dreapta */
+  
+  /* Același stil ca la cardurile de organizatori */
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 12px 28px;
+  display: flex; 
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+  overflow: hidden;
+}
+
+/* Linia aurie de sus */
+#clock-widget::before {
+  content: '';
+  position: absolute; top: 0; left: 15%; right: 15%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+/* Textul mic de deasupra orelor */
+.c-sub {
+  font-size: 11px; 
+  letter-spacing: 3px;
+  font-weight: 600;
+  text-transform: uppercase; 
+  color: var(--text-dim);
+  margin-bottom: 2px;
+}
+
+/* Ora propriu-zisă */
+#time {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 42px; 
+  letter-spacing: 3px;
+  color: var(--text-main);
+  line-height: 1;
+}
+
+/* Secundele (mai mici și aurii pentru un aspect profi) */
+.sec {
+  color: var(--gold);
+  font-size: 32px;
+}
+</style>
+</head>
+<body>
+
+  <div id="clock-widget">
+    <div class="c-sub">ORA LOCALĂ</div>
+    <div id="time">00:00<span class="sec">:00</span></div>
+  </div>
+
+<script>
+  function updateClock() {
+    const now = new Date();
+    
+    // Adăugăm un "0" în față dacă numărul este mai mic de 10
+    const h = String(now.getHours()).padStart(2, '0');
+    const m = String(now.getMinutes()).padStart(2, '0');
+    const s = String(now.getSeconds()).padStart(2, '0');
+    
+    // Actualizăm codul HTML cu ora nouă
+    document.getElementById('time').innerHTML = `${h}:${m}<span class="sec">:${s}</span>`;
+  }
+
+  // Pornim ceasul și îl actualizăm în fiecare secundă (1000 milisecunde)
+  setInterval(updateClock, 1000);
+  updateClock(); // Apelăm funcția o dată la început ca să nu așteptăm 1 secundă
+</script>
+
+</body>
+</html>
