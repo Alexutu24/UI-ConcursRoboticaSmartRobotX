@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tag and Follow US on instagram</title>
+    <style>
+        /* Importăm un font modern din Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        /* Resetare setări de bază */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Fundal animat din gradient */
+            background: linear-gradient(-45deg, #0f172a, #1e293b, #312e81, #1e1b4b);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #fff;
+            padding: 20px;
+        }
+
+        /* Animația fundalului */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Containerul principal */
+        .container {
+            text-align: center;
+            max-width: 1000px;
+            width: 100%;
+            animation: slideUp 1s ease-out;
+        }
+
+        /* Animație la încărcarea paginii */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header {
+            margin-bottom: 3.5rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            background: -webkit-linear-gradient(#fff, #a5b4fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Containerul pentru chenarele cu QR */
+        .cards-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            justify-content: center;
+        }
+
+        /* Designul chenarului (Card-ului) */
+        .qr-card {
+            background: rgba(255, 255, 255, 0.05); /* Efect de sticlă mată */
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            width: 100%;
+            max-width: 380px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Efect de reflexie pe hover */
+        .qr-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: skewX(-20deg);
+            transition: left 0.6s ease;
+        }
+
+        .qr-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4); /* Strălucire neon */
+            border-color: rgba(99, 102, 241, 0.5);
+        }
+
+        .qr-card:hover::before {
+            left: 150%;
+        }
+
+        /* Titlul deasupra QR-ului */
+        .qr-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: #e2e8f0;
+            letter-spacing: 1px;
+        }
+
+        /* Containerul imaginii QR */
+        .qr-image-wrapper {
+            background: #fff;
+            padding: 15px;
+            border-radius: 15px;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .qr-card:hover .qr-image-wrapper {
+            transform: scale(1.08); /* Mărește ușor QR-ul pe hover */
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.8);
+        }
+
+        .qr-image-wrapper img {
+            width: 200px;
+            height: 200px;
+            display: block;
+            border-radius: 8px;
+        }
+
+        /* Setări pentru telefoane mobile */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+            .qr-card {
+                padding: 2rem 1.5rem;
+            }
+            .qr-image-wrapper img {
+                width: 180px;
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Tag and Follow US on instagram</h1>
+        </header>
+
+        <div class="cards-wrapper">
+            <div class="qr-card">
+                <h2 class="qr-title">@ac.utcluj.ro</h2>
+                <div class="qr-image-wrapper">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://instagram.com/ac.utcluj.ro" alt="QR Code AC UTCN Cluj">
+                </div>
+            </div>
+
+            <div class="qr-card">
+                <h2 class="qr-title">@ac.utcn.sm</h2>
+                <div class="qr-image-wrapper">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://instagram.com/ac.utcn.sm" alt="QR Code AC UTCN SM">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
